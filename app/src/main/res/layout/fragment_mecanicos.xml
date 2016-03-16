@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.kingmonkey.fire2road.MecanicosFragment">
+    <org.osmdroid.views.MapView
+        android:id="@+id/openmapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="10sp"
+        android:padding="5sp"
+        android:background="@drawable/background_square_shadow"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Buscar mecánico"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/button" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:id="@+id/button"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/centerMe"
+            android:layout_toStartOf="@+id/centerMe" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_compass"
+            android:id="@+id/centerMe"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

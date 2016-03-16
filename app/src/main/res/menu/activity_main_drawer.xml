@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Para ti" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Para tu motocicleta" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Eventos" />
+    </group>
+
+    <item android:title="Lugares">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Mecánicos" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Lavaderos" />
+            <item
+                android:id="@+id/nav_personalizacion"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Personalización" />
+        </menu>
+    </item>
+
+    <item android:title="Otros">
+        <menu>
+            <item
+                android:id="@+id/nav_cerrarsesion"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>
