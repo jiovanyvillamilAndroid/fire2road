@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Fire2Road.iml" filepath="$PROJECT_DIR$/Fire2Road.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fire2road.iml" filepath="$PROJECT_DIR$/fire2road.iml" />
     </modules>
   </component>
 </project>

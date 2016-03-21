@@ -1,12 +1,15 @@
 package com.kingmonkey.fire2road;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.github.johnpersano.supertoasts.SuperToast;
@@ -34,6 +38,14 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Fire 2 Road");
+
+        if (Build.VERSION.SDK_INT >= 21) {
+
+            // Set the status bar to dark-semi-transparentish
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -75,8 +87,7 @@ public class MainActivity extends AppCompatActivity
             switchFragment(homeFragment,"home");
         } else if (id == R.id.nav_gallery) {
             toolbar.setSubtitle("Para Ti");
-            ParaTiFragment paraTiFragment = new ParaTiFragment();
-            switchFragment(paraTiFragment,"Para ti");
+
         } else if (id == R.id.nav_slideshow) {
             toolbar.setSubtitle("Para Tu Motocicleta");
 
@@ -84,9 +95,10 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("Eventos");
 
         } else if (id == R.id.nav_share) {
-            toolbar.setSubtitle("Mecánicos");
-            MecanicosFragment mecanicosFragment = new MecanicosFragment();
-            switchFragment(mecanicosFragment,"Mecanicos");
+            Intent i = new Intent(MainActivity.this,MecanicosActivity.class);
+            startActivity(i);
+            /*MecanicosFragment mecanicosFragment = new MecanicosFragment();
+            switchFragment(mecanicosFragment,"Mecanicos");*/
         } else if (id == R.id.nav_send) {
             toolbar.setSubtitle("Lavaderos");
         } else if (id == R.id.nav_personalizacion) {
@@ -106,28 +118,17 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
+
     @Override
     public void onBackPressed(){
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }else{
+            finish();
         }
 
-        /*FragmentManager fm = getFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStack();
-        } else {
-            super.onBackPressed();
-        }*/
     }
 
-    public void makeSimpleToast(String m){
-        SuperToast superToast = new SuperToast(this);
-        superToast.setDuration(SuperToast.Duration.LONG);
-        superToast.setAnimations(SuperToast.Animations.POPUP);
-        superToast.setText(m);
-        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
-        superToast.show();
-    }
 }

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.orhanobut.logger.Logger;
 
 import org.osmdroid.events.MapAdapter;
@@ -39,8 +40,15 @@ public class MecanicosFragment extends Fragment implements LocationListener {
     private Button centerMeButton;
     private LocationManager locationManager;
     private Activity activityMain;
+    private Utilities utilities;
 
     public MecanicosFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        utilities = Utilities.getInstance(context);
     }
 
     @Override
@@ -68,7 +76,7 @@ public class MecanicosFragment extends Fragment implements LocationListener {
         centerMeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).makeSimpleToast("Centrando...");
+                utilities.makeSimpleToast("Centrando...", SuperToast.Duration.SHORT);
             }
         });
 
