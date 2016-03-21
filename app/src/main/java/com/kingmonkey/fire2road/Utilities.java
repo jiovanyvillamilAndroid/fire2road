@@ -28,9 +28,8 @@ public class Utilities {
     public void makeSimpleToast(String m, int duration){
         SuperToast superToast = new SuperToast(context);
         superToast.setDuration(duration);
-        superToast.setAnimations(SuperToast.Animations.POPUP);
+        superToast.setAnimations(SuperToast.Animations.SCALE);
         superToast.setText(m);
-        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
         superToast.show();
     }
 

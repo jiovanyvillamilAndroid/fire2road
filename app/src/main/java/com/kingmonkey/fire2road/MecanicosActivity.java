@@ -1,9 +1,11 @@
 package com.kingmonkey.fire2road;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class MecanicosActivity extends AppCompatActivity {
             mecanicos[i] = new MecanicoObject("1","-45234","123213","Mecanico#"+i,"salkdsakljasdl");
         }
         MecanicosAdapter adapter = new MecanicosAdapter(this,R.layout.mecanicos_item,mecanicos);
+        mecanicosList.setItemsCanFocus(true);
         mecanicosList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -36,8 +39,8 @@ public class MecanicosActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                utilities.makeSimpleToast("Hoooliiiis", SuperToast.Duration.SHORT);
-                utilities.showDialogError("Putos!");
+                Intent i = new Intent(MecanicosActivity.this,MecanicosMapActivity.class);
+                startActivity(i);
             }
         });
     }

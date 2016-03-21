@@ -2,7 +2,10 @@ package com.kingmonkey.fire2road;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.provider.SyncStateContract;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.viksaa.sssplash.lib.activity.AwesomeSplash;
@@ -15,6 +18,19 @@ import com.viksaa.sssplash.lib.model.ConfigSplash;
 public class SplashScreen extends AwesomeSplash {
     @Override
     public void initSplash(ConfigSplash configSplash) {
+
+        Window window = this.getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(this.getResources().getColor(R.color.dark_gray));
+        }
         configSplash.setBackgroundColor(R.color.colorPrimary); //any color you want form colors.xml
         configSplash.setAnimCircularRevealDuration(1000); //int ms
         configSplash.setRevealFlagX(Flags.REVEAL_LEFT);  //or Flags.REVEAL_LEFT
