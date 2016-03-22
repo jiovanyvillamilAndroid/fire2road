@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.SuperToast;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
 import okhttp3.OkHttpClient;
 
@@ -23,6 +25,7 @@ public class MecanicosActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Mecánicos");
+        getSupportActionBar().setSubtitle("Lista");
         mecanicosList = (ListView)findViewById(R.id.listViewMecanicos);
         utilities = Utilities.getInstance(this);
 
@@ -36,6 +39,7 @@ public class MecanicosActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.myFAB);
+        floatingActionButton.setImageDrawable(new IconDrawable(this, FontAwesomeIcons.fa_map).colorRes(R.color.white));
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

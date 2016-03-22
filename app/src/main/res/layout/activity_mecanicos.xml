@@ -10,14 +10,14 @@
         android:id="@+id/myFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_send"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         app:borderWidth="0dp"
-        app:rippleColor="#ffffff"
+        app:rippleColor="#E64A19"
         app:elevation="4dp" />
 
     <ListView

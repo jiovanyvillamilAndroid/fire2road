@@ -57,4 +57,9 @@ public class MecanicoObject {
     public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
     }
+
+    @Override
+    public String toString() {
+        return "id: "+id+" nombre: "+nombre+" latitud: "+latitud+" longitud: "+longitud+" url: "+urlFoto;
+    }
 }

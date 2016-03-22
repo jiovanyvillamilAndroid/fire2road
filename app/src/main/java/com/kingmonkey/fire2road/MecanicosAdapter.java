@@ -52,7 +52,7 @@ public class MecanicosAdapter  extends ArrayAdapter<MecanicoObject> {
         }
 
         RatingBar ratingBar = (RatingBar)convertView.findViewById(R.id.ratingBar);
-        ratingBar.setRating(5.0f);
+        ratingBar.setRating(4.0f);
 
         CircleImageView iconoMecanico = (CircleImageView)convertView.findViewById(R.id.mecanicoIcon);
         Picasso.with(mContext).load("http://www.motoscasademont.com/wp-content/uploads/2012/01/click-mecanico1.jpg").into(iconoMecanico);
