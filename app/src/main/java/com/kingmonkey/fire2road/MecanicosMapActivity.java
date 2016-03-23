@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.johnpersano.supertoasts.SuperToast;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
@@ -22,6 +24,7 @@ public class MecanicosMapActivity extends AppCompatActivity {
     private MapView myOpenMapView;
     private MapController myMapController;
     private Utilities utilities;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class MecanicosMapActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         utilities = Utilities.getInstance(this);
+        gson = new Gson();
         prepareMap();
     }
 
@@ -46,12 +50,11 @@ public class MecanicosMapActivity extends AppCompatActivity {
         myOpenMapView.setTilesScaledToDpi(true);
         myMapController.setCenter(new GeoPoint(4.598620,-74.109228));
         ArrayList<OverlayItem> overlays = new ArrayList<>();
-        ArrayList<MecanicoObject> mecanicoObjects = new ArrayList<>();
-        OverlayItem item = new OverlayItem("Here", "SampleDescription", new GeoPoint(4.598620,  -74.109228));
+        MecanicoObject m = new MecanicoObject("1","4.598620","-74.109228","Mecánico de prueba","http://www.gilera150.com.ar/wp-content/uploads/2008/11/mecanico-motos-gilera.gif");
+        OverlayItem item = new OverlayItem("Here", "SampleDescription/"+gson.toJson(m), new GeoPoint(4.598620,  -74.109228));
         item.setMarker(new IconDrawable(this, FontAwesomeIcons.fa_street_view).color(R.color.colorPrimary).sizeDp(50));
         overlays.add(item);
-        mecanicoObjects.add(new MecanicoObject("","","","",""));
-        MarkerItemizedOverlay markerItemizedOverlay = new MarkerItemizedOverlay(this,overlays,mecanicoObjects);
+        MarkerItemizedOverlay markerItemizedOverlay = new MarkerItemizedOverlay(this,overlays);
         myOpenMapView.getOverlays().add(markerItemizedOverlay);
     }
 

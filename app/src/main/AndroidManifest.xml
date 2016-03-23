@@ -42,11 +42,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MecanicosMapActivity"
+        <activity
+            android:name=".MecanicosMapActivity"
             android:parentActivityName=".MecanicosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MecanicosActivity" /></activity>
+                android:value=".MecanicosActivity" />
+        </activity>
+        <activity android:name=".MecanicosDetailActivity"
+            android:parentActivityName=".MecanicosMapActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MecanicosMapActivity" />
+        </activity>
     </application>
 
 </manifest>

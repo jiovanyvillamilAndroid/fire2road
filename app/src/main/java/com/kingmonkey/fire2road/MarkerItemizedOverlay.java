@@ -1,6 +1,7 @@
 package com.kingmonkey.fire2road;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 
 import com.github.johnpersano.supertoasts.SuperToast;
@@ -22,7 +23,7 @@ public class MarkerItemizedOverlay extends ItemizedIconOverlay<OverlayItem> {
     protected Utilities utilities;
 
 
-    public MarkerItemizedOverlay(final Context context, final List<OverlayItem> aList, ArrayList<MecanicoObject> mecanicoObjects) {
+    public MarkerItemizedOverlay(final Context context, final List<OverlayItem> aList) {
         super(context, aList, new OnItemGestureListener<OverlayItem>() {
             @Override public boolean onItemSingleTapUp(final int index, final OverlayItem item) {
                 return false;
@@ -38,17 +39,9 @@ public class MarkerItemizedOverlay extends ItemizedIconOverlay<OverlayItem> {
     @Override
     protected boolean onSingleTapUpHelper(final int index, final OverlayItem item, final MapView mapView) {
         //Toast.makeText(mContext, "Item " + index + " has been tapped!", Toast.LENGTH_SHORT).show();
-        new SweetAlertDialog(mContext, SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText(item.getTitle())
-                .setContentText(item.getSnippet())
-                .setConfirmText("Detalles")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismissWithAnimation();
-                    }
-                })
-                .show();
+        Intent intent = new Intent(mContext,MecanicosDetailActivity.class);
+        intent.putExtra("mecanicoJSONExtra",item.getSnippet().split("/")[1]);
+        mContext.startActivity(intent);
         return true;
     }
 }
