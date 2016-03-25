@@ -2,6 +2,8 @@ package com.kingmonkey.fire2road;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 
@@ -48,6 +50,11 @@ public class Utilities {
                     })
                     .show();
         }
+    }
 
+    public void showSnackBar(String m,View currentView, int duration){
+        Snackbar
+                .make(currentView, m, duration)
+                .show();
     }
 }

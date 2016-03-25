@@ -1,14 +1,7 @@
 package com.kingmonkey.fire2road;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -18,10 +11,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
-import com.github.johnpersano.supertoasts.SuperToast;
+import com.daimajia.slider.library.Indicators.PagerIndicator;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.Logger;
@@ -30,21 +26,23 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;
-    FragmentManager fragmentManager;
+    SliderLayout sliderShowProductosDestacados;
+    SliderLayout sliderShowEventos;
+    Utilities utilities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Iconify.with(new FontAwesomeModule());
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Fire 2 Road");
-
-        if (Build.VERSION.SDK_INT >= 21) {
-
-            // Set the status bar to dark-semi-transparentish
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+        utilities = Utilities.getInstance(this);
+        Window window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(this.getResources().getColor(R.color.dark_gray));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,22 +56,42 @@ public class MainActivity extends AppCompatActivity
         Logger.init();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ImageView profile = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.imageView);
-        Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").into(profile);
-        //Evita que al terminar los fragmentos quede activo
-        fragmentManager = getFragmentManager();
-        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-                if(getFragmentManager().getBackStackEntryCount() == 0) finish();
-            }
-        });
-        //Para que inicialice en home siempre
-        HomeFragment homeFragment = new HomeFragment();
-        switchFragment(homeFragment,"home");
+        ImageView profile = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageView);
+        Picasso.with(this).load("http://www.yamaha-motor.com.au/sites/yamaha-motor/files/imagecache/lightbox/Product_Feature_Image_R3_3.jpg").into(profile);
 
+        sliderShowProductosDestacados = (SliderLayout) findViewById(R.id.productosDestacadosSlider);
+        sliderShowProductosDestacados.setBackgroundColor(Color.parseColor("#050505"));
+        TextSliderView textSliderView = new TextSliderView(this);
+        textSliderView
+                .setScaleType(BaseSliderView.ScaleType.CenterCrop)
+                .description("AGV CORSA")
+                .image("http://images2.revzilla.com/segment_homepage_callout/image/749/rectangle/20160203-FL-AGV-Corsa-Helmet-520-Update-FINAL.jpg");
+        sliderShowProductosDestacados.addSlider(textSliderView);
+        sliderShowProductosDestacados.addSlider(textSliderView);
+        sliderShowProductosDestacados.addSlider(textSliderView);
+        sliderShowProductosDestacados.startAutoCycle();
+        sliderShowProductosDestacados.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
+
+        sliderShowEventos = (SliderLayout) findViewById(R.id.eventosSlider);
+        sliderShowEventos.setBackgroundColor(Color.parseColor("#050505"));
+        TextSliderView textSliderView2 = new TextSliderView(this);
+        textSliderView2
+                .setScaleType(BaseSliderView.ScaleType.FitCenterCrop)
+                .description("Expo Moto")
+                .image("http://mexicoenlared.tv/wp-content/uploads/2015/11/Expomoto.-M%C3%A9xico-en-la-Red.jpg");
+        sliderShowEventos.addSlider(textSliderView2);
+        sliderShowEventos.addSlider(textSliderView2);
+        sliderShowEventos.addSlider(textSliderView2);
+        sliderShowEventos.startAutoCycle();
+        sliderShowEventos.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicatorEventos));
     }
 
+    @Override
+    protected void onStop() {
+        sliderShowEventos.stopAutoCycle();
+        sliderShowProductosDestacados.stopAutoCycle();
+        super.onStop();
+    }
 
 
     @Override
@@ -82,41 +100,24 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            toolbar.setSubtitle("Fire2Road");
-            HomeFragment homeFragment = new HomeFragment();
-            switchFragment(homeFragment,"home");
+
         } else if (id == R.id.nav_gallery) {
-            toolbar.setSubtitle("Para Ti");
-
         } else if (id == R.id.nav_slideshow) {
-            toolbar.setSubtitle("Para Tu Motocicleta");
-
         } else if (id == R.id.nav_manage) {
-            toolbar.setTitle("Eventos");
 
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(MainActivity.this,MecanicosActivity.class);
             startActivity(i);
-            /*MecanicosFragment mecanicosFragment = new MecanicosFragment();
-            switchFragment(mecanicosFragment,"Mecanicos");*/
         } else if (id == R.id.nav_send) {
-            toolbar.setSubtitle("Lavaderos");
         } else if (id == R.id.nav_personalizacion) {
-            toolbar.setSubtitle("Personalización");
         } else if (id == R.id.nav_cerrarsesion) {
             this.finish();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void switchFragment(Fragment fragmento,String tag){
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragmento,tag);
-        transaction.commit();
-    }
 
 
     @Override

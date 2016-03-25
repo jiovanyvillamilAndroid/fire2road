@@ -4,7 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activityMecanicosView"
+    android:background="@color/white"
     tools:context="com.kingmonkey.fire2road.MecanicosActivity">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@color/white"
+        android:id="@+id/listViewMecanicos"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/myFAB"
@@ -16,12 +24,10 @@
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_above="@id/listViewMecanicos"
         app:borderWidth="0dp"
         app:rippleColor="#E64A19"
         app:elevation="4dp" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listViewMecanicos"/>
+
 </RelativeLayout>

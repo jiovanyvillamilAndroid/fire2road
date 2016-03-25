@@ -8,8 +8,58 @@
     tools:context="com.kingmonkey.fire2road.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PRODUCTOS DESTACADOS"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:id="@+id/textView6" />
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/productosDestacadosSlider"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <com.daimajia.slider.library.Indicators.PagerIndicator
+                    android:id="@+id/custom_indicator"
+                    style="@style/AndroidImageSlider_Corner_Oval_Orange"
+                    />
+
+            </com.daimajia.slider.library.SliderLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="EVENTOS"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:id="@+id/textView7" />
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/eventosSlider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <com.daimajia.slider.library.Indicators.PagerIndicator
+                    android:id="@+id/custom_indicatorEventos"
+                    style="@style/AndroidImageSlider_Corner_Oval_Orange"
+                    />
+            </com.daimajia.slider.library.SliderLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
