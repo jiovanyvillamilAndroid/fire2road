@@ -19,11 +19,11 @@
             android:layout_height="match_parent">
 
 
-            <TextView
+            <com.joanzapata.iconify.widget.IconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="PRODUCTOS DESTACADOS"
+                android:text="PRODUCTOS DESTACADOS {fa-cart-plus}"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"
@@ -41,11 +41,11 @@
 
             </com.daimajia.slider.library.SliderLayout>
 
-            <TextView
+            <com.joanzapata.iconify.widget.IconTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="EVENTOS"
+                android:text="EVENTOS {fa-calendar}"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"

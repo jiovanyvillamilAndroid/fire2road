@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -16,7 +17,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
@@ -26,6 +30,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap mMap;
     private Utilities utilities;
+    static final LatLng PERTH = new LatLng(4.5978837, -74.1075547);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         mMap.setMyLocationEnabled(true);
+        //una marca de prueba
+        final Marker perth = mMap.addMarker(new MarkerOptions()
+                .position(PERTH)
+                .title("Mecánico Octava")
+                .snippet("Mecánico especializado en motociclistas desde baja hasta alta cilindrada")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.mechanic_marker))
+                .draggable(false));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                utilities.makeSimpleToast(marker.getId()+" "+marker.getPosition()+" "+marker.getTitle(), SuperToast.Duration.LONG);
+                return false;
+            }
+        });
     }
 
 }
