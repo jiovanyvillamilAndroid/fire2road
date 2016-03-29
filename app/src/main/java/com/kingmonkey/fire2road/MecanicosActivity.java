@@ -2,21 +2,17 @@ package com.kingmonkey.fire2road;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
-
-import okhttp3.OkHttpClient;
+import com.kingmonkey.fire2road.Domain.MecanicoObject;
 
 public class MecanicosActivity extends AppCompatActivity {
     ListView mecanicosList;

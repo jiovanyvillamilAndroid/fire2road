@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Domain;
 
 /**
  * Created by Jiovany on 20/03/2016.

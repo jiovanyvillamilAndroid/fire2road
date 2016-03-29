@@ -11,9 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -22,6 +24,7 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     SliderLayout sliderShowProductosDestacados;
     SliderLayout sliderShowEventos;
     Utilities utilities;
+    View headerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +60,24 @@ public class MainActivity extends AppCompatActivity
         Logger.init();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ImageView profile = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.imageView);
-        Picasso.with(this).load("http://www.yamaha-motor.com.au/sites/yamaha-motor/files/imagecache/lightbox/Product_Feature_Image_R3_3.jpg").into(profile);
+        headerView = navigationView.getHeaderView(0);
 
+        ImageView profile = (ImageView) headerView.findViewById(R.id.imageView);
+        ImageView backgroundProfile = (ImageView) headerView.findViewById(R.id.imageViewBackgroundView);
+        TextView usernameTextView = (TextView)headerView.findViewById(R.id.usernameTextView);
+        TextView refMotoTextView = (TextView)headerView.findViewById(R.id.refMotoTextView);
+        usernameTextView.setText("Cristian Jiovany Villamil");
+        refMotoTextView.setText("YZF-R3");
+        Picasso.with(this).load("http://cdn.wonderfulengineering.com/wp-content/uploads/2013/12/yamaha-logo-wallpaper.jpg").transform(new BlurTransformation(this)).into(backgroundProfile);
+        Picasso.with(this).load("http://www.yamaha-motor.com.au/sites/yamaha-motor/files/imagecache/lightbox/Product_Feature_Image_R3_3.jpg").into(profile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,ProfileActivity.class);
+                i.putExtra("linkPhoto","http://www.yamaha-motor.com.au/sites/yamaha-motor/files/imagecache/lightbox/Product_Feature_Image_R3_3.jpg");
+                startActivity(i);
+            }
+        });
         sliderShowProductosDestacados = (SliderLayout) findViewById(R.id.productosDestacadosSlider);
         sliderShowProductosDestacados.setBackgroundColor(Color.parseColor("#050505"));
         TextSliderView textSliderView = new TextSliderView(this);
