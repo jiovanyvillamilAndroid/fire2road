@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Fire 2 Road");
         utilities = Utilities.getInstance(this);
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         sliderShowProductosDestacados.addSlider(textSliderView);
         sliderShowProductosDestacados.addSlider(textSliderView);
         sliderShowProductosDestacados.addSlider(textSliderView);
-        sliderShowProductosDestacados.startAutoCycle();
+        sliderShowProductosDestacados.stopAutoCycle();
         sliderShowProductosDestacados.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
 
         sliderShowEventos = (SliderLayout) findViewById(R.id.eventosSlider);
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity
         sliderShowEventos.addSlider(textSliderView2);
         sliderShowEventos.addSlider(textSliderView2);
         sliderShowEventos.addSlider(textSliderView2);
-        sliderShowEventos.startAutoCycle();
+        sliderShowEventos.stopAutoCycle();
         sliderShowEventos.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicatorEventos));
     }
 
