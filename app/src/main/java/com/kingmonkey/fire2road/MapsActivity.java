@@ -1,18 +1,16 @@
 package com.kingmonkey.fire2road;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.Window;
 
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -25,12 +23,99 @@ import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.yayandroid.locationmanager.LocationBaseActivity;
+import com.yayandroid.locationmanager.LocationConfiguration;
+import com.yayandroid.locationmanager.LocationManager;
+import com.yayandroid.locationmanager.constants.FailType;
+import com.yayandroid.locationmanager.constants.LogType;
+import com.yayandroid.locationmanager.constants.ProviderType;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+public class MapsActivity extends LocationBaseActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Utilities utilities;
     static final LatLng PERTH = new LatLng(4.5978837, -74.1075547);
+    SweetAlertDialog progressDialog;
+
+    @Override
+    public LocationConfiguration getLocationConfiguration() {
+        return new LocationConfiguration()
+                .keepTracking(true)
+                .askForGooglePlayServices(true)
+                .setMinAccuracy(200.0f)
+                .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
+                .setWaitPeriod(ProviderType.GPS, 10 * 1000)
+                .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)
+                .setGPSMessage("¿Quieres activar el GPS?")
+                .setRationalMessage("Activar!");
+    }
+
+    @Override
+    public void onLocationFailed(int failType) {
+        switch (failType) {
+            case FailType.PERMISSION_DENIED: {
+                utilities.showSnackBar("No se puede obtener la ubicación, el usuario no otorgó permisos", findViewById(R.id.map), Snackbar.LENGTH_LONG);
+                break;
+            }
+            case FailType.GP_SERVICES_NOT_AVAILABLE:
+            case FailType.GP_SERVICES_CONNECTION_FAIL: {
+                utilities.showSnackBar("No se puede obtener la ubicación, debido a que Google Play Services no esta disponible", findViewById(R.id.map), Snackbar.LENGTH_LONG);
+                break;
+            }
+            case FailType.NETWORK_NOT_AVAILABLE: {
+                utilities.showSnackBar("No se puede obtener la ubicación, debido a que la red no es accesible", findViewById(R.id.map), Snackbar.LENGTH_LONG);
+                break;
+            }
+            case FailType.TIMEOUT: {
+                utilities.showSnackBar("No se puede obtener la ubicación, tiempo de espera excedido", findViewById(R.id.map), Snackbar.LENGTH_LONG);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        dismissProgress();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (getLocationManager().isWaitingForLocation()
+                && !getLocationManager().isAnyDialogShowing()) {
+            displayProgress();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dismissProgress();
+    }
+
+    private void displayProgress() {
+        if (progressDialog == null) {
+            progressDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            progressDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.colorPrimary));
+            progressDialog.setTitleText("Obteniendo ubicación...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    private void dismissProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +131,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         utilities = Utilities.getInstance(this);
-        utilities.showSnackBar("Recuerda activar la ubicación GPS",findViewById(R.id.map), Snackbar.LENGTH_LONG);
+        utilities.showSnackBar("Recuerda activar la ubicación GPS", findViewById(R.id.map), Snackbar.LENGTH_LONG);
+        LocationManager.setLogType(LogType.GENERAL);
+        getLocation();
     }
-
 
 
     /**
@@ -74,6 +160,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         mMap.setMyLocationEnabled(true);
+
         //una marca de prueba
         final Marker perth = mMap.addMarker(new MarkerOptions()
                 .position(PERTH)

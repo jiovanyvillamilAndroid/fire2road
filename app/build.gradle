@@ -51,4 +51,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'jp.wasabeef:picasso-transformations:2.1.0'
+    compile 'com.yayandroid:LocationManager:1.0.9'
 }
