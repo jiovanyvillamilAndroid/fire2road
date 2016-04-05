@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activities.SplashScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -41,31 +41,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MecanicosActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".Activities.MecanicosActivity"
+            android:parentActivityName=".Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".MecanicosMapActivity"
-            android:parentActivityName=".MecanicosActivity">
+            android:name=".Activities.MecanicosMapActivity"
+            android:parentActivityName=".Activities.MecanicosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MecanicosActivity" />
+                android:value=".Activities.MecanicosActivity" />
         </activity>
         <activity
-            android:name=".MecanicosDetailActivity"
-            android:parentActivityName=".MecanicosMapActivity">
+            android:name=".Activities.MecanicosDetailActivity"
+            android:parentActivityName=".Activities.MecanicosMapActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MecanicosMapActivity" />
+                android:value=".Activities.MecanicosMapActivity" />
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -83,29 +83,29 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".MapsActivity"
-            android:parentActivityName=".MecanicosMapActivity">
+            android:name=".Activities.MapsActivity"
+            android:parentActivityName=".Activities.MecanicosMapActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingmonkey.fire2road.MecanicosActivity" />
+                android:value=".Activities.MecanicosActivity" />
         </activity>
         <activity
-            android:name=".ParaTiActivity"
+            android:name=".Activities.ParaTiActivity"
             android:label="@string/title_activity_para_ti"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingmonkey.fire2road.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".ProfileActivity"
+            android:name=".Activities.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.kingmonkey.fire2road.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
     </application>
 

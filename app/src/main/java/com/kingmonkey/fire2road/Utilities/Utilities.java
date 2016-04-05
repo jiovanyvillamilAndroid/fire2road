@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Utilities;
 
 import android.app.Activity;
 import android.content.Context;

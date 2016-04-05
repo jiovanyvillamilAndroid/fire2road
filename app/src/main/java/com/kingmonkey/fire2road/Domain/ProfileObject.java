@@ -3,7 +3,7 @@ package com.kingmonkey.fire2road.Domain;
 /**
  * Created by Jiovany on 28/03/2016.
  */
-public class PerfilObject {
+public class ProfileObject {
     String nombre;
     String username;
     String marcaMoto;//Yamaha, Honda, Kawasaki
@@ -11,7 +11,7 @@ public class PerfilObject {
     String profileUrl;
     String marcaUrl;
 
-    public PerfilObject(String marcaMoto, String marcaUrl, String nombre, String profileUrl, String refMoto, String username) {
+    public ProfileObject(String marcaMoto, String marcaUrl, String nombre, String profileUrl, String refMoto, String username) {
         this.marcaMoto = marcaMoto;
         this.marcaUrl = marcaUrl;
         this.nombre = nombre;
@@ -22,7 +22,7 @@ public class PerfilObject {
 
     @Override
     public String toString() {
-        return "PerfilObject{" +
+        return "ProfileObject{" +
                 "marcaMoto='" + marcaMoto + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", username='" + username + '\'' +

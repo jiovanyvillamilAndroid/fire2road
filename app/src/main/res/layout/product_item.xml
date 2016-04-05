@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:layout_height="100dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/productImage"
+            android:src="@android:drawable/ic_menu_report_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="CORSAIR-X"
+            android:textStyle="bold"
+            android:id="@+id/productName"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/productPrice"
+            android:layout_alignStart="@+id/productPrice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="2'750.000 COP"
+            android:id="@+id/productPrice"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/productImage"
+            android:layout_toEndOf="@+id/productImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Descripción corta"
+            android:id="@+id/productDescription"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/productImage"
+            android:layout_toEndOf="@+id/productImage" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+</android.support.v7.widget.CardView>

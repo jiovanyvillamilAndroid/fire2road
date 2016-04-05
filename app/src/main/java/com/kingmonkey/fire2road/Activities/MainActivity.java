@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,6 +22,8 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.kingmonkey.fire2road.R;
+import com.kingmonkey.fire2road.Utilities.Utilities;
 import com.orhanobut.logger.Logger;
 import com.squareup.picasso.Picasso;
 import jp.wasabeef.picasso.transformations.BlurTransformation;

@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -10,6 +10,7 @@ import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.kingmonkey.fire2road.R;
 
 public class MecanicosDetailActivity extends AppCompatActivity {
     String mecanicoJSON;

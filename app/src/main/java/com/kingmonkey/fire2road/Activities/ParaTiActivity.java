@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kingmonkey.fire2road.Fragments.CascosFragment;
+import com.kingmonkey.fire2road.R;
 import com.orhanobut.logger.Logger;
 
 public class ParaTiActivity extends AppCompatActivity {
@@ -106,9 +107,6 @@ public class ParaTiActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            Logger.e(""+position);
             Fragment f = null;
             switch (position){
                 case 0:

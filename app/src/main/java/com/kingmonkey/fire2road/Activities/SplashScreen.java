@@ -1,13 +1,12 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.provider.SyncStateContract;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.daimajia.androidanimations.library.Techniques;
+import com.kingmonkey.fire2road.R;
 import com.viksaa.sssplash.lib.activity.AwesomeSplash;
 import com.viksaa.sssplash.lib.cnst.Flags;
 import com.viksaa.sssplash.lib.model.ConfigSplash;

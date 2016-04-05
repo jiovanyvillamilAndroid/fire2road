@@ -1,14 +1,11 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.view.Window;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +20,8 @@ import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.kingmonkey.fire2road.R;
+import com.kingmonkey.fire2road.Utilities.Utilities;
 import com.yayandroid.locationmanager.LocationBaseActivity;
 import com.yayandroid.locationmanager.LocationConfiguration;
 import com.yayandroid.locationmanager.LocationManager;
@@ -102,7 +101,7 @@ public class MapsActivity extends LocationBaseActivity implements OnMapReadyCall
             progressDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
             progressDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.colorPrimary));
             progressDialog.setTitleText("Obteniendo ubicación...");
-            progressDialog.setCancelable(false);
+            progressDialog.setCancelable(true);
             progressDialog.show();
         }
 

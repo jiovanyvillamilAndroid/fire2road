@@ -4,30 +4,19 @@
     android:layout_height="match_parent"
     tools:context="com.kingmonkey.fire2road.Fragments.CascosFragment">
 
-
-    <RelativeLayout
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/cascosDestacados"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:elevation="10dp"
-        android:padding="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/relativeLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Cascos Fragment"
-            android:id="@+id/textView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+        android:layout_height="150dp">
+        <com.daimajia.slider.library.Indicators.PagerIndicator
+            android:id="@+id/custom_indicator"
+            style="@style/AndroidImageSlider_Corner_Oval_Orange" />
+    </com.daimajia.slider.library.SliderLayout>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/cascosDestacados"
         android:id="@+id/listView"
-        android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

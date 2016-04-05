@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Activities;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +13,9 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.kingmonkey.fire2road.Domain.MecanicoObject;
+import com.kingmonkey.fire2road.Adapters.MecanicosAdapter;
+import com.kingmonkey.fire2road.R;
+import com.kingmonkey.fire2road.Utilities.Utilities;
 
 public class MecanicosActivity extends AppCompatActivity {
     ListView mecanicosList;

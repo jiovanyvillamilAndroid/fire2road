@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/activityMecanicosView"
     android:background="@color/white"
-    tools:context="com.kingmonkey.fire2road.MecanicosActivity">
+    tools:context=".Activities.MecanicosActivity">
 
     <ListView
         android:layout_width="wrap_content"

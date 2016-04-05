@@ -1,4 +1,4 @@
-package com.kingmonkey.fire2road;
+package com.kingmonkey.fire2road.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.kingmonkey.fire2road.Domain.MecanicoObject;
+import com.kingmonkey.fire2road.R;
+import com.kingmonkey.fire2road.Utilities.Utilities;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
